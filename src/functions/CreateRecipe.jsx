@@ -45,7 +45,7 @@ class CreateRecipe extends Component {
     onChangeRecipeName(event) {
         this.setState({name: event.target.value});
     }
-    onRemoveRecipePart(event, index){
+    onRemoveRecipePart(event, index) {
         event.preventDefault();
         var recipeParts= this.state.recipeParts;
         var inputs = this.state.inputs;
@@ -68,12 +68,11 @@ class CreateRecipe extends Component {
         var newIng = `input-${this.state.inputs.length}`;
         this.setState(prevState => ({ inputs: prevState.inputs.concat([newIng]) }));
     }
-   onSubmitRecipe(event) {
+    onSubmitRecipe(event) {
         event.preventDefault();
         const db =  firebase.firestore();
        db.collection('recipes').doc().set({
             name: this.state.name,
-            
             recipeParts: this.state.recipeParts
           }).then(function() {
               alert("recipe added successfully");
